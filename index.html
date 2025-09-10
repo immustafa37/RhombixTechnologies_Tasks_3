@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookLibrary | Manage Your Personal Library</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-book"></i> BookLibrary</h1>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="btn-icon" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="add-book-btn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Book
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Search books...">
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <h3>Categories</h3>
+                    <div class="category-list">
+                        <button class="category-btn active" data-category="all">All Books</button>
+                        <button class="category-btn" data-category="fiction">Fiction</button>
+                        <button class="category-btn" data-category="non-fiction">Non-Fiction</button>
+                        <button class="category-btn" data-category="science">Science</button>
+                        <button class="category-btn" data-category="history">History</button>
+                        <button class="category-btn" data-category="biography">Biography</button>
+                    </div>
+
+                    <h3>Status</h3>
+                    <div class="status-filters">
+                        <label class="checkbox-container">Available
+                            <input type="checkbox" checked id="filter-available">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Borrowed
+                            <input type="checkbox" checked id="filter-borrowed">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="content">
+                <div class="content-header">
+                    <h2>My Library</h2>
+                    <div class="view-options">
+                        <button class="view-option active" id="grid-view"><i class="fas fa-th"></i></button>
+                        <button class="view-option" id="list-view"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+
+                <div class="books-container" id="books-container">
+                    <!-- Books will be dynamically inserted here -->
+                </div>
+
+                <div class="history-section">
+                    <h2>Borrowing History</h2>
+                    <div class="history-container" id="history-container">
+                        <!-- History items will be dynamically inserted here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add/Edit Book Modal -->
+    <div class="modal" id="book-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Book</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="book-form">
+                <div class="form-group">
+                    <label for="book-title">Title</label>
+                    <input type="text" id="book-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" required>
+                </div>
+                <div class="form-group">
+                    <label for="book-category">Category</label>
+                    <select id="book-category" required>
+                        <option value="">Select a category</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="science">Science</option>
+                        <option value="history">History</option>
+                        <option value="biography">Biography</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="book-isbn">ISBN</label>
+                    <input type="text" id="book-isbn">
+                </div>
+                <div class="form-group">
+                    <label for="book-published">Published Year</label>
+                    <input type="number" id="book-published" min="1000" max="2023">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-book">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Borrow Book Modal -->
+    <div class="modal" id="borrow-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Borrow Book</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="borrow-form">
+                <div class="form-group">
+                    <label for="borrower-name">Borrower Name</label>
+                    <input type="text" id="borrower-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="borrow-date">Borrow Date</label>
+                    <input type="date" id="borrow-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="return-date">Expected Return Date</label>
+                    <input type="date" id="return-date" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-borrow">Cancel</button>
+                    <button type="submit" class="btn-primary">Confirm Borrow</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
